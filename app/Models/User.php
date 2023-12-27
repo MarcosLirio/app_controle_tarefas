@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\RedefinirSenhaNotification;
 use App\Notifications\VerificarEmailNotification;
+use App\Models\Tarefa;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -49,5 +50,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendEmailVerificationNotification() {
         $this->notify(new VerificarEmailNotification($this->name));
+    }
+
+    public function tarefas() {
+        //hasMany(Tem muitos)
+        return $this->hasMany('App\Models\Tarefa');
     }
 }
